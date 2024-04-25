@@ -25,29 +25,6 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 
-#Location Data
-@LocationData.post("/locationData")
-async def Location_Data(item: Locationdata):
-
-    """
-
-        ## **Location Data**: 
-
-        * **Icon**  the image icon base64 format.
-        * **Name**  the Location Name passed as String.
-        * **Exit**  the Exit Name passed as String.
-
-    """
-    try:
-        processed_data = {
-            "icon": item.icon,
-            "name": item.name,
-            "exit": item.exit,
-        }
-        await manager.broadcast(processed_data)
-        return processed_data
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
 
 
 # S1- IDLE Model
@@ -324,7 +301,7 @@ async def display_payggm(message :int , item: payggm):
 async def display_paygam(message :int , item: paygam):
 
     """
-        ## ** Pay as you go-apology message** :
+        ## ** Pay as ysdfou go-apology message** :
 
             if the Message = 9 the processed_data send it is : 
 

@@ -1,10 +1,16 @@
 # main.py
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
-from API.socket import *
 import uvicorn
 
+from fastapi import FastAPI
+import websockets
+from API.Apology_Screens.apology_api import *
+from API.Display.display_api import *
+from API.Location_Data.location_api import *
+from API.Payment_Screens.payment_api import *
+
 from config.config import APP_PORT
+
 
 
 app = Fastapp = FastAPI(
@@ -22,14 +28,7 @@ app.include_router(Payggm, tags=["Payment Screens - GOODBYE Messages"])
 app.include_router(Paygam, tags=["Pay As You Go Screens - Apology Messages"])
 
 
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=APP_PORT, reload=True)
-
-
-
-    """ @app.websocket("/ws")
+@app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
 
     await websocket.accept()
@@ -54,4 +53,22 @@ async def websocket_endpoint(websocket: WebSocket):
         print("WebSocket disconnected")
 
     except Exception as e:
-        print(f"WebSocket error: {e}") """
+        print(f"WebSocket error: {e}") 
+        
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=APP_PORT, reload=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
