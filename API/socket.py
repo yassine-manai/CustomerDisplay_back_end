@@ -49,6 +49,7 @@ async def Location_Data(item: Locationdata):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
 
+
 # S1- IDLE Model
 @Idle.post("/display/1")
 async def display_idle(item: IdleModel):
