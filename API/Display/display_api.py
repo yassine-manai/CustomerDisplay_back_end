@@ -34,7 +34,7 @@ async def display_idle(item: IdleModel):
         ## **IDLE MODEL** : 
 
         * **Message**  : The message number (Default = 1).
-        * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
+        * **DispTime** : The display Time (Default = 10 Seconds).
         * **Exit** : The pathImage is passed as base64 format.
 
     """
@@ -74,7 +74,7 @@ async def display_stppd(item: STppd):
         ## **Short Term Parker Price Display** : 
 
         * **Message**  : The message number = 2
-        * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
+        * **DispTime** : The display Time (Default = 10 Seconds).
         * **entryTime** : The entryTime passed as string.
         * **exitTime** : The exit passed as string.
         * **lenghtOfStay** : The length time passed as string.
@@ -126,7 +126,7 @@ async def display_Estpgm(item: EstpGm):
         ## **Exit short term parker - Goodbye message** : 
 
         * **Message**  : The message number = 3 .
-        * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
+        * **DispTime** : The display Time (Default = 10 Seconds).
         * **paymentSuccess** : The payment success message passed as string.
         * **visitMessage** : The visit message passed as string.
     
@@ -171,7 +171,7 @@ async def display_paygm(item: paygm):
         ## **Pay as you go-GOODBYE Message** : 
 
         * **Message**  : The message number = 4.
-        * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
+        * **DispTime** : The display Time (Default = 10 Seconds).
         * **name** : The name of the customer passed as string.
         * **thankYouMessage** : The thank you message passed as string.
         * **licencePlate** : The licencePlate of the car passed as string.
@@ -228,7 +228,7 @@ async def display_psgm(item: psgm):
         ## **Prebooking + Subscriber - GOODBYE Message** : 
 
         * **Message**  : The message number = 5.
-        * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
+        * **DispTime** : The display Time (Default = 10 Seconds).
         * **name** : The name of the customer passed as string.
         * **thankYouMessage** : The thank you message passed as string.
         * **licencePlate** : The licencePlate of the car passed as string.

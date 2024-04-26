@@ -35,7 +35,7 @@ async def display_payggm(message :int , item: payggm):
            if the Message = 6 the processed_data send it is : 
 
                 * message  : The message number (Default = 6).
-                * DispTime : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000ms).
+                * DispTime : The display Time (Default = 10 Seconds).
                 * name : "Mr .. ... "
                 * thankYouMessage : "You don’t have enough credit in your wallet"
                 * licencePlate : "ABC123"
@@ -50,7 +50,7 @@ async def display_payggm(message :int , item: payggm):
             if the Message = 7 the processed_data send it is : 
 
                 * message : The message number (message = 7).
-                * DispTime : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000ms).
+                * DispTime : The display Time (Default = 10 Seconds).
                 * name : "Mr .. ... "
                 * thankYouMessage : "You exceed your booking period"
                 * licencePlate : "ABC123"
@@ -64,7 +64,7 @@ async def display_payggm(message :int , item: payggm):
             if the Message = 8 the processed_data send it is : 
 
                 * message  : The message number (message = 8).
-                * DispTime : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000ms).
+                * DispTime : The display Time (Default = 10 Seconds).
                 * name : "Mr .. ... ".
                 * thankYouMessage : "Your subscription is expired".
                 * licencePlate** : "ABC123".

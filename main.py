@@ -28,7 +28,7 @@ app.include_router(Payggm, tags=["Payment Screens - GOODBYE Messages"])
 app.include_router(Paygam, tags=["Pay As You Go Screens - Apology Messages"])
 
 
-@app.websocket("/ws")
+""" @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
 
     await websocket.accept()
@@ -53,7 +53,7 @@ async def websocket_endpoint(websocket: WebSocket):
         print("WebSocket disconnected")
 
     except Exception as e:
-        print(f"WebSocket error: {e}") 
+        print(f"WebSocket error: {e}")  """
         
 
 if __name__ == "__main__":
