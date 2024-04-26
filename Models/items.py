@@ -23,7 +23,7 @@ class STppd(BaseModel):
     DispTime: int = 10000
     entryTime: str = "21-02-2024 14:36"
     exitTime: str = "21-02-2024 17:36"
-    lenght: str = "2 hours"
+    lenghtOfStay: str = "2 hours"
     amount: str = "150"
     currency: str = "KWD"
     licencePlate: str = "ABC1234"
@@ -46,7 +46,7 @@ class paygm(BaseModel):
     licencePlate: str = "ABC123"
     entryTime: str = "21-02-2024 14:36"
     exitTime: str = "21-02-2024 17:36"
-    lenght: str = "2 hours"
+    lenghtOfStay: str = "2 hours"
     amount: str = "150"
     currency: str = "KWD"
     carImage: str
@@ -61,7 +61,7 @@ class psgm(BaseModel):
     licencePlate: str
     entryTime: str
     exitTime: str
-    length: str
+    lenghtOfStay: str
     carImage: str
 
 
@@ -75,7 +75,7 @@ class payggm(BaseModel):
     licencePlate: str = "ABC123"
     entryTime: str = "21-02-2024 14:36"
     exitTime: str = "21-02-2024 17:36"
-    lenght: str = "2 hours 31 minutes"
+    lenghtOfStay: str = "2 hours 31 minutes"
     currency: str = "KWD"
     amount: str = "150"
     carImage: str
@@ -90,7 +90,7 @@ class PAYGGM(BaseModel):
     licencePlate: str
     entryTime: str
     exitTime: str
-    length: str
+    lenghtOfStay: str
     currency: str
     amount: str
     carImage: str
@@ -105,7 +105,7 @@ class PAYGGM(BaseModel):
     licencePlate: str
     entryTime: str
     exitTime: str
-    length: str
+    lenghtOfStay: str
     amount: str
     currency: str
     carImage: str """

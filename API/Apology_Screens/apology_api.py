@@ -1,3 +1,4 @@
+from venv import logger
 from fastapi import APIRouter, FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from Manager.WebSocket import manager
 from Models.items import *
@@ -12,7 +13,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -78,6 +81,7 @@ async def display_paygam(message :int , item: paygam):
                 "carImage": item.carImage,
             }
 
+
         if message == 11:
             processed_data = {
                 "message": 11,
@@ -88,7 +92,11 @@ async def display_paygam(message :int , item: paygam):
                 "carImage": item.carImage,
             }
 
+            
+
         await manager.broadcast(processed_data)
         return processed_data
+    
     except Exception as e:
+        logger.error(f"Error to process Request // 500 error")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")

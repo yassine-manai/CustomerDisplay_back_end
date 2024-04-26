@@ -1,3 +1,4 @@
+from venv import logger
 from fastapi import APIRouter, FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from Manager.WebSocket import manager
 from Models.items import *
@@ -19,7 +20,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+            
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -57,7 +60,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -72,7 +77,7 @@ async def display_stppd(item: STppd):
         * **DispTime** : The display Time <1000ms = 1 second> (Default = 10 Seconds = 10000 ms).
         * **entryTime** : The entryTime passed as string.
         * **exitTime** : The exit passed as string.
-        * **length** : The length time passed as string.
+        * **lenghtOfStay** : The length time passed as string.
         * **amount** : The amount to pay passed as string.
         * **currency** : The currency passed as string.
         * **licencePlate** : The licencePlate of the car passed as string.
@@ -85,7 +90,7 @@ async def display_stppd(item: STppd):
             "DispTime": item.DispTime,
             "entryTime": item.entryTime,
             "exitTime": item.exitTime,
-            "length": item.length,
+            "lenghtOfStay": item.lenghtOfStay,
             "amount": item.amount,
             "currency": item.currency,
             "licencePlate": item.licencePlate,
@@ -107,7 +112,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -143,7 +150,6 @@ async def display_Estpgm(item: EstpGm):
 
 
 
-
 # WEB SOCKET + API N° 04 ----------------------------------------------------------------
 @Paygm.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -151,7 +157,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+    
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -169,7 +177,7 @@ async def display_paygm(item: paygm):
         * **licencePlate** : The licencePlate of the car passed as string.
         * **entryTime** : The entryTime passed as string.
         * **exitTime** : The exit passed as string.
-        * **length** : The length time passed as string.
+        * **lenghtOfStay** : The length time passed as string.
         * **amount** : The amount to pay passed as string.
         * **currency** : The currency passed as string.
         * **carImage** : The image of the car captured by the camera passed as base64 format.
@@ -184,7 +192,7 @@ async def display_paygm(item: paygm):
             "licencePlate": item.licencePlate,
             "entryTime": item.entryTime,
             "exitTime": item.exitTime,
-            "length": item.length,
+            "lenghtOfStay": item.lenghtOfStay,
             "amount": item.amount,
             "currency": item.currency,
             "carImage": item.carImage,
@@ -198,7 +206,6 @@ async def display_paygm(item: paygm):
 
 
 
-
 # WEB SOCKET + API N° 05 ----------------------------------------------------------------
 @Psgm.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -206,7 +213,9 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+            print()
+        
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -225,7 +234,7 @@ async def display_psgm(item: psgm):
         * **licencePlate** : The licencePlate of the car passed as string.
         * **entryTime** : The entryTime passed as string.
         * **exitTime** : The exit passed as string.
-        * **length** : The length time passed as string.
+        * **lenghtOfStay** : The length time passed as string.
         * **carImage** : The image of the car captured by the camera passed as base64 format.
 
     """
@@ -239,7 +248,7 @@ async def display_psgm(item: psgm):
             "licencePlate": item.licencePlate,
             "entryTime": item.entryTime,
             "exitTime": item.exitTime,
-            "length": item.length,
+            "lenghtOfStay": item.lenghtOfStay,
             "carImage": item.carImage,
         }
         await manager.broadcast(processed_data)
