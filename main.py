@@ -6,6 +6,7 @@ from fastapi import FastAPI
 import websockets
 from API.Apology_Screens.apology_api import *
 from API.Display.display_api import *
+from API.Footer.footer_api import FooterData
 from API.Location_Data.location_api import *
 from API.Payment_Screens.payment_api import *
 
@@ -19,7 +20,8 @@ app = Fastapp = FastAPI(
 )
 
 app.include_router(LocationData, tags=["Location Data"])
-app.include_router(Idle, tags=["Payment Screens"])
+app.include_router(FooterData, tags=["Footer Data"])
+app.include_router(Idle, tags=["Main Screen"])
 app.include_router(Stppd, tags=["Payment Screens"])
 app.include_router(Estpgm, tags=["Payment Screens"])
 app.include_router(Paygm, tags=["Payment Screens"])

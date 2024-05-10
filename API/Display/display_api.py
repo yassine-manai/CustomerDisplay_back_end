@@ -27,7 +27,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 # S1- IDLE Model
-@Idle.post("/display/1")
+@Idle.post("/mainDisplay")
 async def display_idle(item: IdleModel):
 
     """
@@ -35,15 +35,14 @@ async def display_idle(item: IdleModel):
 
         * **Message**  : The message number (Default = 1).
         * **DispTime** : The display Time (Default = 10 Seconds).
-        * **Exit** : The pathImage is passed as base64 format.
+        * **Timer Image** : The timer between images (Default is 6 Seconds).
 
     """
 
     try:
         processed_data = {
             "message": item.message,
-            "DispTime": item.DispTime,
-            "pathImage": item.pathImage,
+            "timerImage": item.timerIntervale,
         }
         await manager.broadcast(processed_data)
         return processed_data

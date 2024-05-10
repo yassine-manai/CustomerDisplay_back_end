@@ -3,18 +3,23 @@ from pydantic import BaseModel
 
 
 #Location Data 
-
 class Locationdata(BaseModel):
+    message : int = 100
     icon: str
     name: str = "PUMC Carpark"
-    exit: str = "Exit 704"
+    exit_point: str = "Exit 704"
+    timezone: str = "Asia/Kuwait"
 
+
+#Footer Data
+class footerData(BaseModel):
+    message : int = 110
+    timerFooter : int = 6
 
 # S1- IDLE Model
 class IdleModel(BaseModel):
     message: int = 1
-    DispTime: int = 10
-    pathImage: str
+    timerIntervale: int = 6
 
 
 # S2 - Short term parker-Price display
