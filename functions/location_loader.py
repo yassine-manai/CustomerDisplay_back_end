@@ -64,7 +64,7 @@ def fetch_and_save_data():
 
 @UpdateLocData.get("/locationData")
 async def get_location_data():
-    fetch_and_save_data()
+    #fetch_and_save_data()
     data = load_local_data()
     if data:
         logger.success(f"Data Fetched: {data}")

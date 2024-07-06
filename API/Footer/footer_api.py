@@ -5,9 +5,9 @@ from config.log_config import logger
 
 app = FastAPI()
 
-FooterData = APIRouter() #This is for footer data
+FooterData = APIRouter() # This is for footer data
 
-#Location WebSocket
+# Footer Data WebSocket
 @FooterData.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
@@ -15,22 +15,16 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             data = await websocket.receive_json()
             logger.info(f"Received message: {data}")
-
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
-
-#Location Data EndPoint
+# Footer Data Endpoint
 @FooterData.post("/footerData")
-async def Footer_Data(item: footerData):
-
+async def footer_data(item: footerData):
     """
-
-        ## **Location Data**: 
-
-        * **messaage**  the message 110
-        * **timerIntervale**  the image passed as base64 format.
-
+    ## **Location Data**: 
+    * **message**: the message 110
+    * **timerIntervale**: the image passed as base64 format.
     """
     try:
         processed_data = {
@@ -38,6 +32,9 @@ async def Footer_Data(item: footerData):
             "timerIntervale": item.timerIntervale,
         }
         await manager.broadcast(processed_data)
+        logger.info(f"Processed data: {processed_data}")
         return processed_data
     except Exception as e:
+        logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
+

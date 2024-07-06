@@ -4,27 +4,17 @@ from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from Models.items import ImageData
+from config.log_config import logger
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins = ["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],  
-    allow_headers=["*"],  
-)
-
 
 Banner_Images = APIRouter() 
 Main_Images = APIRouter() 
 
-
 IMAGES_PATH = os.path.abspath("/mnt/c/test_api/POSAD/functions/images")
 
-
 def get_images(prefix: str) -> List[ImageData]:
-    print(f"Images path: {IMAGES_PATH}")
+    logger.info(f"Images path: {IMAGES_PATH}")
     
     images_data = []
 
@@ -38,9 +28,11 @@ def get_images(prefix: str) -> List[ImageData]:
                     mime_type = f"image/{file_extension}"
                     b64_with_extension = f"data:{mime_type};base64,{b64_string}"
                     images_data.append(ImageData(filename=filename, base64=b64_with_extension))
+        logger.info(f"Found {len(images_data)} images with prefix '{prefix}'")
+    else:
+        logger.error(f"Images path does not exist: {IMAGES_PATH}")
     
     return images_data
-
 
 @Banner_Images.get("/get_banner", response_model=List[ImageData])
 def get_banner():

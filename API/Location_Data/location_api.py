@@ -2,6 +2,7 @@ import json
 from fastapi import APIRouter, FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from Manager.WebSocket import manager
 from Models.items import Locationdata
+from config.log_config import logger
 
 app = FastAPI()
 
@@ -14,10 +15,14 @@ LOCAL_DATA_FILE = "local_data.json"
 def load_local_data():
     try:
         with open(LOCAL_DATA_FILE, 'r') as file:
-            return json.load(file)
+            data = json.load(file)
+            logger.info("Local data loaded successfully")
+            return data
     except FileNotFoundError:
+        logger.error("Local data file not found")
         return {}
     except json.JSONDecodeError:
+        logger.error("Failed to decode JSON data")
         raise HTTPException(status_code=500, detail="Failed to decode JSON data")
 
 # Function to save data to the local JSON file
@@ -25,7 +30,9 @@ def save_local_data(data):
     try:
         with open(LOCAL_DATA_FILE, 'w') as file:
             json.dump(data, file, indent=4)
+            logger.info("Local data saved successfully")
     except Exception as e:
+        logger.error(f"Failed to save data: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save data: {e}")
 
 # Location WebSocket
@@ -35,7 +42,7 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -91,7 +98,7 @@ async def Location_Data(item: Locationdata):
         await manager.broadcast(processed_data)
         return processed_data
     except Exception as e:
+        logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
 
-
-
+app.include_router(LocationData)

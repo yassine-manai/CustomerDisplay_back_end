@@ -1,8 +1,7 @@
-from venv import logger
 from fastapi import APIRouter, FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from Manager.WebSocket import manager
 from Models.items import *
-
+from config.log_config import logger
 app = FastAPI()
 
 

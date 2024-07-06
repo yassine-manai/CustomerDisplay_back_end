@@ -58,21 +58,10 @@ app.include_router(TimersData, tags=["Timers"])
 
 logger.info(" Server Work Correctly ")
 
-def update_env_task():
-    while True:
-        logger.info("Starting Update env Task ")
-        update_env()
-        time.sleep(900)  
-
-@app.on_event("startup")
-async def startup_event():
-    background_tasks = BackgroundTasks()
-    background_tasks.add_task(update_env_task)
 
 #fetch_and_save_images()      
 
 if __name__ == "__main__":
-
     uvicorn.run("main:app", host="0.0.0.0", port=APP_PORT, reload=True)
 
 

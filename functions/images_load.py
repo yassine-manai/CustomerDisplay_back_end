@@ -59,7 +59,6 @@ def process_images(api_response):
         main_screen_images = data.get("mainScreenimages", [])
         for image in main_screen_images:
             logger.info("Processing main screen image")
-            # Add your logic to handle mainScreenimages
     else:
         logger.error("API call was not successful")
 

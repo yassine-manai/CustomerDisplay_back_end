@@ -12,7 +12,7 @@ from config.run_thread import run_in_thread
 load_dotenv()
 
 app = FastAPI()
-TimersData = APIRouter() 
+TimersData = APIRouter()
 
 def fetch_timers():
     url = f"http://{SERVER_IP}:{SERVER_PORT}/internal/api/getAds?operator_id={OPERATOR_ID}&zr_id={ZR_ID}"
@@ -20,25 +20,28 @@ def fetch_timers():
 
     try:
         response = requests.get(url)
-        
+
         if response.status_code == 200:
             data = response.json()
 
             if data.get("success"):
                 banner_change_time = data["data"].get("bannerChangeTime", "6")
                 main_screen_change_time = data["data"].get("mainScreenChangeTime", "6")
-                
+
+                # Ensure the times are returned as integers
+                banner_change_time = int(banner_change_time)
+                main_screen_change_time = int(main_screen_change_time)
+
                 logger.info(f"Banner Change Time: {banner_change_time}")
                 logger.info(f"Main Screen Change Time: {main_screen_change_time}")
-                
+
                 ads_data = {
                     'banner_time': banner_change_time,
                     'main_time': main_screen_change_time,
                 }
-                
-                return ads_data
 
-                logger.info("Data successfully")
+                logger.info("Data successfully fetched")
+                return ads_data
             else:
                 logger.error(f"API error: {data.get('error')}")
         else:
@@ -46,6 +49,7 @@ def fetch_timers():
     except Exception as e:
         logger.error(f"Exception occurred: {e}")
 
+    return None
 
 
 @TimersData.get("/main-timer")
