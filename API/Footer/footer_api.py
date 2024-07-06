@@ -1,6 +1,7 @@
 from fastapi import APIRouter, FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from Manager.WebSocket import manager
 from Models.items import footerData
+from config.log_config import logger
 
 app = FastAPI()
 
@@ -13,7 +14,8 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Received message: {data}")
+            logger.info(f"Received message: {data}")
+
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 

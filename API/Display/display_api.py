@@ -80,7 +80,7 @@ async def display_stppd(item: STppd):
         * **amount** : The amount to pay passed as string.
         * **currency** : The currency passed as string.
         * **licencePlate** : The licencePlate of the car passed as string.
-        * **pathImage** : The image of the car captured by the camera passed as base64 format.
+        * **carImage** : The image of the car captured by the camera passed as base64 format.
     """
         
     try:
@@ -93,7 +93,7 @@ async def display_stppd(item: STppd):
             "amount": item.amount,
             "currency": item.currency,
             "licencePlate": item.licencePlate,
-            "pathImage": item.pathImage,
+            "carImage": item.carImage,
         }
         await manager.broadcast(processed_data)
         return processed_data

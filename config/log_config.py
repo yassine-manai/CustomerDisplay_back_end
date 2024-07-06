@@ -1,5 +1,5 @@
 import sys
-from venv import logger
+from loguru import logger 
 
 #from config.config import LEVEL, LOG_ON_FILE, FILENAME, FILE_SIZE
 LEVEL="INFO"

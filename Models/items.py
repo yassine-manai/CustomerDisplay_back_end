@@ -2,12 +2,17 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class ImageData(BaseModel):
+    filename: str
+    base64: str
+
+
 #Location Data 
 class Locationdata(BaseModel):
     message : int = 100
-    icon: str
-    name: str = "PUMC Carpark"
-    exit_point: str = "Exit 704"
+    icon: str = " "
+    name_point: str = " "
+    exit_point: str = " "
     timezone: str = "Asia/Kuwait"
 
 
@@ -32,7 +37,7 @@ class STppd(BaseModel):
     amount: str = "150"
     currency: str = "KWD"
     licencePlate: str = "ABC1234"
-    pathImage: str
+    carImage: str
 
 # S3 - Exit short term parker - Goodbye message
 class EstpGm(BaseModel):

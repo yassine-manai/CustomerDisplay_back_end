@@ -1,7 +1,7 @@
 # Ignore generated files
 **/*.pyc
-.vscode
 venv
+posadvenv
 
 logs/*
 __pycache__
