@@ -11,13 +11,12 @@ from API.Location_Data.location_api import *
 from API.Payment_Screens.payment_api import *
 from API.imageLoader.image_api import Banner_Images, Main_Images
 from API.Timer.ScreenTimer import TimersData
+from API.Location_Data.location_loader import UpdateLocData
+from API.imageLoader.images_load import fetch_and_save_images
 
 from config.config import APP_PORT
 from config.log_config import logger
 
-from functions.location_loader import UpdateLocData
-from functions.images_load import fetch_and_save_images
-from functions.update_env_file import update_env
 
 
 app = Fastapp = FastAPI(
