@@ -14,7 +14,7 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            logger.info(f"Received message: {data}")
+            logger.info(f"Received message")
             print()
 
     except WebSocketDisconnect:
@@ -122,7 +122,12 @@ async def display_payggm(message :int , item: payggm):
                 "carImage": item.carImage,
             }
 
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
+        logger.info(f"Processed data: {log_data}")
         return processed_data
     
     except Exception as e:

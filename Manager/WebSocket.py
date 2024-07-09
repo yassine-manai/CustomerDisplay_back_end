@@ -18,7 +18,7 @@ class ConnectionManager:
         logger.info(f"WebSocket connection disconnected: {websocket.client.host}")
 
     async def broadcast(self, data: dict):
-        logger.info(f"Broadcasting message to {len(self.active_connections)} connections: {data}")
+        logger.info(f"Broadcasting message to {len(self.active_connections)} connections")
         for connection in self.active_connections:
             await connection.send_json(data)
 

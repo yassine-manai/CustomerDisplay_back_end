@@ -28,8 +28,12 @@ POS_IP =  str(os.getenv("POS_IP"))
 POS_PORT =  int(os.getenv("POS_PORT"))
 POS_API = str(os.getenv("POS_API"))
 
-OPERATOR_ID =  int(os.getenv("OPERATOR_ID")) 
-ZR_ID =  int(os.getenv("ZR_ID")) 
-SAVE_PATH =  str(os.getenv("SAVE_PATH"))
-    
+CRON = str(os.getenv("CRON"))
 
+
+""" OPERATOR_ID =  int(os.getenv("OPERATOR_ID")) 
+ZR_ID =  int(os.getenv("ZR_ID"))      """
+
+SAVE_PATH =  str(os.getenv("SAVE_PATH"))
+
+IMAGES_PATH = str(os.getenv("IMAGES_PATH"))

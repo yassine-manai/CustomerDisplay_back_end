@@ -47,7 +47,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 # Location Data EndPoint
-@LocationData.post("/locationData")
+@LocationData.post("/infos/update_location_data")
 async def Location_Data(item: Locationdata):
     """
     ## **Location Data**:

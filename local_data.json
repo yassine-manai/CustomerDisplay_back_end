@@ -1,1 +1,11 @@
-{"name_point": "Dasman Complex", "exit_point": "POS - Exit 762 (Astro)", "operator_id": 99700, "zr_id": 7077, "timezone": "Asia/Kuwait"}
+{
+    "name_point": "Dasman Complex",
+    "exit_point": "POS - Exit 762 (Astro)",
+    "operator_id": 99700,
+    "zr_id": 7077,
+    "pos_id": "762",
+    "timezone": "Asia/Kuwait",
+    "banner_time": 26,
+    "main_time": 30,
+    "cron": 1
+}

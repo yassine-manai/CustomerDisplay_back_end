@@ -5,13 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from Models.items import ImageData
 from config.log_config import logger
+from config.config import IMAGES_PATH
+
 
 app = FastAPI()
 
 Banner_Images = APIRouter() 
 Main_Images = APIRouter() 
 
-IMAGES_PATH = os.path.abspath("/mnt/c/test_api/POSAD/API/imageLoader/images")
 
 def get_images(prefix: str) -> List[ImageData]:
     logger.info(f"Images path: {IMAGES_PATH}")

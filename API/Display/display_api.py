@@ -36,9 +36,15 @@ async def display_idle(item: IdleModel):
             "message": item.message,
             "timerImage": item.timerIntervale,
         }
+        
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
-        logger.info(f"Processed data: {processed_data}")
+        logger.info(f"Processed data: {log_data}")
         return processed_data
+
     except Exception as e:
         logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
@@ -81,9 +87,15 @@ async def display_stppd(item: STppd):
             "licencePlate": item.licencePlate,
             "carImage": item.carImage,
         }
+            
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
-        logger.info(f"Processed data: {processed_data}")
+        logger.info(f"Processed data: {log_data}")
         return processed_data
+
     except Exception as e:
         logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
@@ -95,7 +107,7 @@ async def websocket_endpoint_estpgm(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            logger.info(f"Received message: {data}")
+            logger.info(f"Received message")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -116,9 +128,15 @@ async def display_estpgm(item: EstpGm):
             "paymentSuccess": item.paymentSuccess,
             "visitMessage": item.visitMessage,
         }
+        
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
-        logger.info(f"Processed data: {processed_data}")
+        logger.info(f"Processed data: {log_data}")
         return processed_data
+
     except Exception as e:
         logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")
@@ -165,8 +183,13 @@ async def display_paygm(item: paygm):
             "currency": item.currency,
             "carImage": item.carImage,
         }
+        
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
-        logger.info(f"Processed data: {processed_data}")
+        logger.info(f"Processed data: {log_data}")
         return processed_data
     except Exception as e:
         logger.error(f"Failed to process request: {e}")
@@ -179,7 +202,7 @@ async def websocket_endpoint_psgm(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_json()
-            logger.info(f"Received message: {data}")
+            logger.info(f"Received message  .. . ")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 
@@ -210,9 +233,15 @@ async def display_psgm(item: psgm):
             "lenghtOfStay": item.lenghtOfStay,
             "carImage": item.carImage,
         }
+        
+        log_data = processed_data.copy()
+        if "carImage" in log_data:
+            log_data.pop("carImage")
+
         await manager.broadcast(processed_data)
-        logger.info(f"Processed data: {processed_data}")
+        logger.info(f"Processed data: {log_data}")
         return processed_data
+
     except Exception as e:
         logger.error(f"Failed to process request: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process request: {e}")

@@ -19,7 +19,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 # Footer Data Endpoint
-@FooterData.post("/footerData")
+@FooterData.post("/footer_data")
 async def footer_data(item: footerData):
     """
     ## **Location Data**: 
