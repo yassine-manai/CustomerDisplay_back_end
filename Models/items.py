@@ -1,4 +1,5 @@
-from typing import Optional
+from dataclasses import dataclass
+from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -7,6 +8,19 @@ class ImageData(BaseModel):
     base64: str
 
 
+@dataclass
+class AdsImagesData:
+    bannerImages: List[str]
+    mainScreenImages: List[str]
+    bannerChangeTime: int
+    mainScreenChangeTime: int
+
+@dataclass
+class ResponseBody:
+    success: bool
+    data: AdsImagesData
+    
+    
 #Location Data 
 class Locationdata(BaseModel):
     message : int = 100
@@ -57,6 +71,7 @@ class paygm(BaseModel):
     entryTime: str = "21-02-2024 14:36"
     exitTime: str = "21-02-2024 17:36"
     lenghtOfStay: str = "2 hours"
+    amountLabel: str = "Amount to pay"
     amount: str = "150"
     currency: str = "KWD"
     carImage: str
@@ -81,7 +96,7 @@ class payggm(BaseModel):
     message: int
     DispTime: int = 10
     name: str = "Mr. Yassine Manai"
-    thankYouMessage: str = "mesasge = 7 : You don’t have enough credit in your wallet / message = 8 : You exceed your booking period / message = 9 :Your subscription is expired "
+    thankYouMessage: str = "Thnns for ur visit"
     licencePlate: str = "ABC123"
     entryTime: str = "21-02-2024 14:36"
     exitTime: str = "21-02-2024 17:36"

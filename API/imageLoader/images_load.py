@@ -1,21 +1,12 @@
-import json
 import os
-from asyncio import sleep
 import base64
 import requests
+from Models.items import AdsImagesData
 from config.log_config import logger
-from config.config import SAVE_PATH, SERVER_IP, SERVER_PORT
-from config.run_thread import run_in_thread
+from config.config import SERVER_IP, SERVER_PORT
+from globalvars.globals import local_data
 
-# Load the local.json file
-def load_local_config():
-    with open('local_data.json', 'r') as f:
-        config = json.load(f)
-    return config
 
-local_config = load_local_config()
-OPERATOR_ID = local_config.get("operator_id")
-ZR_ID = local_config.get("zr_id")
 
 def get_image_extension(image_data):
     if image_data.startswith("data:image/jpeg"):
@@ -24,6 +15,8 @@ def get_image_extension(image_data):
         return "png"
     else:
         return "jpg"
+
+
 
 def save_images(image_data, prefix):
     images_path = os.path.join(os.path.dirname(__file__), 'images')
@@ -48,6 +41,7 @@ def save_images(image_data, prefix):
     for file in files_to_remove:
         os.remove(os.path.join(images_path, file))
 
+
 def process_images(api_response):
     if api_response.get("success"):
         data = api_response.get("data", {})
@@ -66,23 +60,50 @@ def process_images(api_response):
     else:
         logger.error("API call was not successful")
 
-def fetch_and_save_images():
-    url = f"http://{SERVER_IP}:{SERVER_PORT}/internal/api/getAds?operator_id={OPERATOR_ID}&zr_id={ZR_ID}"
+
+
+def cleanlistimages(img: list)->str:
+    retlist=[]
+    for image in img:
+        retlist.append(image.replace('data:','').strip())
+    return retlist
+
+
+def fetch_images() -> AdsImagesData:
+    global local_data
     
-    print(OPERATOR_ID)
+    OPERATOR_ID = local_data.get("operator_id")
+    ZR_ID = local_data.get("zr_id")
+    POS_ID = local_data.get("pos_id")
+    
+    logger.debug("Call Parking Control started :--------------------------------------:",local_data)
+    
+    url = f"http://demo.asteroidea.co:8092/internal/api/getAds?operator_id=99700&zr_id=7077"
+    logger.info(url)
+    
+    logger.debug(" Call Ended :--------------------------------------: ",url)
 
     try:
         response = requests.get(url)
+        response.raise_for_status() 
         
-        if response.status_code == 200:
-            data = response.json()
-
-            if data.get("success"):
-                process_images(data)
-                logger.info("Images processed successfully")
-            else:
-                logger.error(f"API error: {data.get('error')}")
+        response_json = response.json()
+        logger.debug(f"Banner Length:{len(response_json['data']['bannerImages'])} / mainscreen len {len(response_json['data']['mainScreenImages'])}" )
+        
+        if response_json.get("success"):
+            banner= cleanlistimages(response_json['data']['bannerImages'])
+            mainScreenImages= cleanlistimages(response_json['data']['mainScreenImages'])
+            
+            data = AdsImagesData(
+                bannerImages=banner,
+                mainScreenImages=mainScreenImages,
+                bannerChangeTime=int(response_json['data']['bannerChangeTime']),
+                mainScreenChangeTime=int(response_json['data']['mainScreenChangeTime']),
+            )
+            return data
         else:
-            logger.error(f"Request failed with status code: {response.status_code}")
+            logger.error(f"API error: {response_json.get('error')}")
     except Exception as e:
         logger.error(f"Exception occurred: {e}")
+
+

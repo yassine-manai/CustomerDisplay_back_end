@@ -1,7 +1,6 @@
 import os
 import base64
 from fastapi import APIRouter, FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from Models.items import ImageData
 from config.log_config import logger
@@ -14,7 +13,7 @@ Banner_Images = APIRouter()
 Main_Images = APIRouter() 
 
 
-def get_images(prefix: str) -> List[ImageData]:
+def get_images_json(prefix: str) -> List[ImageData]:
     logger.info(f"Images path: {IMAGES_PATH}")
     
     images_data = []
@@ -35,11 +34,12 @@ def get_images(prefix: str) -> List[ImageData]:
     
     return images_data
 
+
+
 @Banner_Images.get("/get_banner", response_model=List[ImageData])
 def get_banner():
-    return get_images("banner")
+    return get_images_json("banner")
 
 @Main_Images.get("/get_mainScreen", response_model=List[ImageData])
 def get_mainScreen():
-    return get_images("main")
-
+    return get_images_json("main")

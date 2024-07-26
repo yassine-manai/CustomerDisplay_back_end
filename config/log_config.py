@@ -2,7 +2,7 @@ import sys
 from loguru import logger 
 
 #from config.config import LEVEL, LOG_ON_FILE, FILENAME, FILE_SIZE
-LEVEL="INFO"
+LEVEL="DEBUG"
 LOG_ON_FILE=True
 FILENAME="Ads.log"
 FILE_SIZE=100

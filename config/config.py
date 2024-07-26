@@ -18,6 +18,7 @@ add_default_section_header(config_file_path)
 config = configparser.ConfigParser()
 config.read(config_file_path)
 
+
 APP_IP =  str(os.getenv("APP_IP")) 
 APP_PORT =  int(os.getenv("APP_PORT")) 
 
@@ -28,11 +29,9 @@ POS_IP =  str(os.getenv("POS_IP"))
 POS_PORT =  int(os.getenv("POS_PORT"))
 POS_API = str(os.getenv("POS_API"))
 
-CRON = str(os.getenv("CRON"))
+CRON = int(os.getenv("CRON"))
+TZ =  str(os.getenv("TZ")) 
 
-
-""" OPERATOR_ID =  int(os.getenv("OPERATOR_ID")) 
-ZR_ID =  int(os.getenv("ZR_ID"))      """
 
 SAVE_PATH =  str(os.getenv("SAVE_PATH"))
 

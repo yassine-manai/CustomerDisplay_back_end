@@ -2,13 +2,10 @@
     "success": true,
     "data": {
         "bannerImages": [
-            "data: image\/png;base64,
-            "data: image\/jpeg;base64,"
+            "a","b"
         ],
         "mainScreenImages": [
-            "data: image\/png;base64,",
-            "data: image\/png;base64,",
-            "data: image\/jpeg;base64,"
+            "c","d"
         ],
         "bannerChangeTime": "26",
         "mainScreenChangeTime": "30"
