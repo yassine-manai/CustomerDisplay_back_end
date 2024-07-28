@@ -7,9 +7,9 @@ local_data: dict = {
     'zr_id':7000,
     'pos_id':701,
     'timezone': "Etc/UTC",
-    "banner_time":10,
+    "banner_time":6,
     "main_time":10,
-    "cron":1
+    "cron":60000
 }
 
 

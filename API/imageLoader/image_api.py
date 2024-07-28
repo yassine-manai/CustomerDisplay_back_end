@@ -1,6 +1,6 @@
 import os
 import base64
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, HTTPException
 from typing import List
 from Models.items import ImageData
 from config.log_config import logger
@@ -38,8 +38,15 @@ def get_images_json(prefix: str) -> List[ImageData]:
 
 @Banner_Images.get("/get_banner", response_model=List[ImageData])
 def get_banner():
-    return get_images_json("banner")
+    images = get_images_json("banner")
+    if not images:
+        raise HTTPException(status_code=404, detail="No banner images found")
+    return images
+
 
 @Main_Images.get("/get_mainScreen", response_model=List[ImageData])
 def get_mainScreen():
-    return get_images_json("main")
+    images = get_images_json("main")
+    if not images:
+        raise HTTPException(status_code=404, detail="No main screen images found")
+    return images

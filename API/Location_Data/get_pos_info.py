@@ -1,5 +1,5 @@
 import requests
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from config.log_config import logger
 from config.config import POS_IP,POS_PORT,POS_API,TZ
 
@@ -46,7 +46,8 @@ def get_data_from_pos() -> bool:
         return False
 
 @UpdateLocData.get("/infos/get_location_data")
-def get_location_data():
+def get_location_data(): 
+    if not local_data: 
+        raise HTTPException(status_code=404, detail="No location data found")
     return local_data
  
-
