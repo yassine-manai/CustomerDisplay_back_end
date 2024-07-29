@@ -78,7 +78,7 @@ def fetch_images() -> AdsImagesData:
     
     logger.debug("Call Parking Control started :--------------------------------------:",local_data)
     
-    url = f"http://demo.asteroidea.co:8092/internal/api/getAds?operator_id=99700&zr_id=7077"
+    url = f"http://{SERVER_IP}:{SERVER_PORT}/internal/api/getAds?operator_id={OPERATOR_ID}&zr_id={ZR_ID}&pos_id={POS_ID}"
     logger.info(url)
     
     logger.debug(" Call Ended :--------------------------------------: ",url)
