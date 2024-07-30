@@ -1,4 +1,3 @@
-from typing import List
 from fastapi import FastAPI, APIRouter
 from globalvars.globals import local_data
 

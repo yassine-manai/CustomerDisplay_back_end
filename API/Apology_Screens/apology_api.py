@@ -7,7 +7,6 @@ app = FastAPI()
 Paygam = APIRouter()
 
 # Configure Loguru
-logger.add("config.logoru")
 
 @Paygam.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

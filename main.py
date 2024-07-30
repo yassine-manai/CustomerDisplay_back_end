@@ -32,11 +32,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include all the routers
-#app.include_router(LocationData, tags=["Location Data"])
-#app.include_router(FooterData, tags=["Footer Data"])
-
-
 app.include_router(UpdateLocData, tags=["Location Data"])
 app.include_router(Idle, tags=["Main Screen"])
 app.include_router(Stppd, tags=["Payment Screens"])
@@ -48,7 +43,6 @@ app.include_router(Paygam, tags=["Pay As You Go Screens - Apology Messages"])
 app.include_router(Main_Images, tags=["Ads Images"])
 app.include_router(Banner_Images, tags=["Ads Images"])
 app.include_router(GetTimersData, tags=["Ads Timers"])
-#app.include_router(UpdateTimersData, tags=["Ads Timers"])
 app.include_router(UpdateAdsData, tags=["Ads Manager"])
 app.include_router(debug_local_data, tags=["DEBUG"])
 
@@ -58,7 +52,7 @@ async def scheduled_tasks():
         resp=get_data_from_pos()
         
         if not resp:
-            logger.error(" * * *   ERROR WHILE CALLing POS Default   * * * ")
+            logger.error(" * * *  ERROR WHILE CALLing POS Default   * * * ")
             
         await asyncio.sleep(2)
         

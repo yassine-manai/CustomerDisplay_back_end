@@ -5,7 +5,7 @@ from config.log_config import logger
 
 app = FastAPI()
 
-FooterData = APIRouter() # This is for footer data
+FooterData = APIRouter()
 
 # Footer Data WebSocket
 @FooterData.websocket("/ws")

@@ -1,7 +1,6 @@
 import base64
 import os
 import time
-from dotenv import load_dotenv
 import requests
 from fastapi import FastAPI, HTTPException, APIRouter
 from config.log_config import logger
@@ -185,13 +184,6 @@ def update_images_from_control():
         logger.error("allimages does not have mainScreenImages attribute.")
 
 
-
-
-
-
-
-
-
 @GetTimersData.get("/ads_timer")
 async def get_timers_data():
     global local_data
@@ -227,61 +219,3 @@ async def update_ads_data():
         raise HTTPException(status_code=500, detail="API response missing mainScreenImages attribute")
 
     return {"detail": "Ads data fetched from API and updated"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""" @UpdateTimersData.post("/update_timers")
-async def update_timers_data(
-    main_timer: int = Query(None, description="timer in seconds."),
-    banner_timer: int = Query(None, description="timer in seconds."),
-    cron_timer: int = Query(None, description="timer in hours."),
-):
-    
-    Update Timers:
-
-    Parameters:
-    - main_timer (int, optional): Main screen change timer in seconds.
-    - banner_timer (int, optional): Banner change timer in seconds.
-    - cron_timer (int, optional): Cron job interval in hours.
-    
-    
-    if main_timer is None and banner_timer is None and cron_timer is None:
-        update_local_config_with_timers()
-        return {"detail": "Timers data fetched from API and updated"}
-    else:
-        if main_timer is not None:
-            local_config["main_time"] = main_timer
-            logger.info(f"Main Screen Change Time updated to: {main_timer}")
-        
-        if banner_timer is not None:
-            local_config["banner_time"] = banner_timer
-            logger.info(f"Banner Change Time updated to: {banner_timer}")
-        
-        if cron_timer is not None:
-            local_config["cron"] = cron_timer
-            logger.info(f"Cron Change Time updated to: {cron_timer}")
-        
-        save_local_config(local_config, LOCAL_DATA_FILE)
-        return {"detail": "Timers data updated with provided parameters"}
- """
